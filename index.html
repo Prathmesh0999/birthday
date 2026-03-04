@@ -3,29 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>For My Everything</title>
+    <title>For Tinny Terror 🌸</title>
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Playfair+Display:ital,wght@0,400;1,700&display=swap" rel="stylesheet">
     
     <style>
         :root {
             --accent: #ff385c;
-            --soft-pink: #ffeef2;
+            --paper: #fffefb;
         }
 
         body {
             margin: 0;
             height: 100vh;
-            background: #0a0a0a; /* Deep black for premium contrast */
+            background: #0a0a0a;
             font-family: 'Playfair Display', serif;
             overflow: hidden;
             display: flex;
             justify-content: center;
             align-items: center;
-            perspective: 1000px;
+            perspective: 1200px;
         }
 
-        /* Moving Gradient Aura */
+        /* Ambient Glow Background */
         .aura {
             position: absolute;
             width: 600px;
@@ -34,10 +34,10 @@
             filter: blur(80px);
             border-radius: 50%;
             pointer-events: none;
-            transition: all 0.5s ease;
+            transition: transform 0.1s ease;
         }
 
-        /* Floating Lyrics Background */
+        /* Floating Lyrics */
         .lyrics {
             position: absolute;
             color: rgba(255, 255, 255, 0.05);
@@ -46,7 +46,8 @@
             font-weight: 700;
             pointer-events: none;
             user-select: none;
-            animation: moveLyrics 20s linear infinite;
+            animation: moveLyrics 25s linear infinite;
+            z-index: 1;
         }
 
         @keyframes moveLyrics {
@@ -54,13 +55,29 @@
             to { transform: translateX(-100%); }
         }
 
-        /* 3D Envelope */
+        /* Scattered Photos */
+        .scatter-photo {
+            position: absolute;
+            width: 160px;
+            padding: 10px 10px 30px 10px;
+            background: white;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+            transition: 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            cursor: zoom-in;
+            z-index: 10;
+        }
+
+        .scatter-photo img { width: 100%; height: 160px; object-fit: cover; filter: grayscale(20%); }
+        .scatter-photo:hover { transform: scale(1.1) rotate(0deg) !important; z-index: 150; }
+        .scatter-photo:hover img { filter: grayscale(0%); }
+
+        /* 3D Interactive Envelope */
         .card-container {
             position: relative;
             width: 350px;
             height: 250px;
             transform-style: preserve-3d;
-            transition: transform 0.1s ease;
+            transition: transform 0.1s ease, opacity 0.5s;
             cursor: pointer;
             z-index: 100;
         }
@@ -79,38 +96,37 @@
         }
 
         .envelope::after {
-            content: 'Open Me';
+            content: 'Open For Vaishali';
             color: var(--accent);
             text-transform: uppercase;
-            letter-spacing: 5px;
+            letter-spacing: 3px;
             font-size: 0.7rem;
             border: 1px solid var(--accent);
-            padding: 10px 20px;
+            padding: 12px 24px;
             border-radius: 50px;
             transition: 0.3s;
         }
 
-        .envelope:hover::after {
-            background: var(--accent);
-            color: white;
-        }
+        .envelope:hover::after { background: var(--accent); color: white; }
 
-        /* The Secret Letter */
+        /* Elegant Paper Letter */
         .letter-content {
             position: fixed;
-            top: 50%;
+            top: 55%; /* Start slightly lower for the slide-up animation */
             left: 50%;
-            transform: translate(-50%, -50%) scale(0.8);
-            width: 90%;
-            max-width: 500px;
-            background: white;
-            padding: 50px;
-            color: #1a1a1a;
+            transform: translate(-50%, -40%) scale(0.8);
+            width: 85%;
+            max-width: 450px;
+            background: var(--paper);
+            padding: 40px;
+            color: #222;
             opacity: 0;
             visibility: hidden;
-            transition: all 0.8s cubic-bezier(0.19, 1, 0.22, 1);
+            transition: all 0.9s cubic-bezier(0.19, 1, 0.22, 1);
             z-index: 200;
-            border-radius: 4px;
+            border-radius: 2px;
+            box-shadow: 0 0 0 10px var(--paper), 0 0 0 11px rgba(0,0,0,0.05), 20px 20px 80px rgba(0,0,0,0.4);
+            text-align: center;
         }
 
         .letter-content.active {
@@ -119,22 +135,25 @@
             transform: translate(-50%, -50%) scale(1);
         }
 
-        /* Scatter Photos */
-        .scatter-photo {
-            position: absolute;
-            width: 180px;
-            padding: 10px;
-            background: white;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
-            transition: 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            cursor: zoom-in;
-            z-index: 10;
+        .letter-content h1 { font-family: 'Dancing Script', cursive; font-size: 2.5rem; color: var(--accent); margin: 0 0 15px 0; }
+        .letter-content p { font-size: 1.05rem; line-height: 1.7; color: #444; margin: 0 0 15px 0; }
+        
+        .signature { font-family: 'Dancing Script', cursive; font-size: 1.8rem; margin-top: 25px; }
+
+        .close-btn {
+            background: transparent;
+            border: none;
+            color: #aaa;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 0.65rem;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: 0.3s;
         }
+        .close-btn:hover { color: var(--accent); letter-spacing: 4px; }
 
-        .scatter-photo img { width: 100%; filter: grayscale(30%); transition: 0.3s; }
-        .scatter-photo:hover { transform: scale(1.1) rotate(0deg) !important; z-index: 150; }
-        .scatter-photo:hover img { filter: grayscale(0%); }
-
+        /* Fullscreen View */
         .fullscreen-photo {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
@@ -143,37 +162,54 @@
             justify-content: center;
             align-items: center;
             z-index: 1000;
-            cursor: zoom-out;
         }
-        
-        #full-img { max-height: 80vh; border: 10px solid white; }
+        #full-img { max-height: 80vh; border: 10px solid white; box-shadow: 0 0 30px rgba(0,0,0,0.5); }
 
     </style>
 </head>
 <body>
 
     <div class="aura" id="aura"></div>
-    <div class="lyrics" style="top: 20%;">I love annyoing you more than anything 😁😁 • My favorite person • Forever & Always</div>
-    <div class="lyrics" style="top: 60%; animation-delay: -10s; opacity: 0.03;">Your smile is my favorite sight • Every moment with you is a gift</div>
+    
+    <div class="lyrics" style="top: 15%;">I love annoying you more than anything 😁😁 • My favorite person • Forever & Always</div>
+    <div class="lyrics" style="top: 75%; animation-delay: -12s; opacity: 0.03;">Your smile is my favorite sight • Millo mere say!!!! 😭😭</div>
 
-    <div class="scatter-photo" style="top: 10%; left: 5%; transform: rotate(-15deg);" onclick="zoom(this)"><img src=></div>
-    <div class="scatter-photo" style="top: 15%; right: 10%; transform: rotate(10deg);" onclick="zoom(this)"><img src=></div>
-    <div class="scatter-photo" style="bottom: 10%; left: 15%; transform: rotate(-5deg);" onclick="zoom(this)"><img src=></div>
-    <div class="scatter-photo" style="bottom: 15%; right: 5%; transform: rotate(12deg);" onclick="zoom(this)"><img src=></div>
+    <div class="scatter-photo" style="top: 10%; left: 8%; transform: rotate(-12deg);" onclick="zoom(this)">
+        <img src="Screenshot_20260304_103723_Gallery.jpg" alt="Memory 1">
+    </div>
+    <div class="scatter-photo" style="top: 15%; right: 12%; transform: rotate(15deg);" onclick="zoom(this)">
+        <img src="Screenshot_20260304_103730_Gallery.jpg" alt="Memory 2">
+    </div>
+    <div class="scatter-photo" style="bottom: 12%; left: 18%; transform: rotate(-5deg);" onclick="zoom(this)">
+        <img src="Screenshot_20260304_103742_Gallery.jpg" alt="Memory 3">
+    </div>
+    <div class="scatter-photo" style="bottom: 18%; right: 10%; transform: rotate(8deg);" onclick="zoom(this)">
+        <img src="Screenshot_20260304_103814_Gallery.jpg" alt="Memory 4">
+    </div>
 
     <div class="card-container" id="card" onclick="openMagic()">
         <div class="envelope"></div>
     </div>
 
     <div class="letter-content" id="letter">
-        <h1 style="font-family: 'Dancing Script'; font-size: 3rem; margin-top: 0;">Happy Birthday, Love</h1>
-        <p style="font-size: 1.1rem; line-height: 1.8; font-style: italic;">
-            "If I had a flower for every time I thought of you... I could walk through my garden forever."
+        <h1>Happy Birthday,<br>Tinny Terror 🌸</h1>
+        
+        <p style="font-style: italic; color: #888; font-size: 0.9rem;">
+            "If I had a flower for every time I thought of you... I could walk through my garden forever 💐."
         </p>
-        <p style="line-height: 1.6;">
-            I wanted to create a space that’s just for us. Thank you for being my peace, my chaos, and my favorite person in the world. 
+        
+        <p>
+            Wishing you the happiest of birthdays! I hope today is full of good people, great music, and even better memories. 
+            May this next year be the one where everything just clicks into place. Cheers to you!
         </p>
-        <button onclick="closeMagic()" style="background: none; border: 1px solid #ccc; padding: 10px 20px; cursor: pointer; margin-top: 20px;">Close</button>
+
+        <p style="font-weight: bold; color: var(--accent); margin-top: 10px;">
+            "millo mere say!!!! 😭😭😭😭"
+        </p>
+
+        <div class="signature">With Love,</div>
+        
+        <button class="close-btn" onclick="closeMagic()">[ Close Letter ]</button>
     </div>
 
     <div class="fullscreen-photo" id="overlay" onclick="this.style.display='none'">
@@ -181,38 +217,48 @@
     </div>
 
     <script>
-        // 3D Tilt Effect
         const card = document.getElementById('card');
         const aura = document.getElementById('aura');
+        const letter = document.getElementById('letter');
 
+        // Mouse Move Aura & Tilt Effect
         document.addEventListener('mousemove', (e) => {
-            const x = (window.innerWidth / 2 - e.pageX) / 20;
-            const y = (window.innerHeight / 2 - e.pageY) / 20;
+            const x = (window.innerWidth / 2 - e.pageX) / 25;
+            const y = (window.innerHeight / 2 - e.pageY) / 25;
             
             card.style.transform = `rotateY(${-x}deg) rotateX(${y}deg)`;
-            aura.style.left = e.pageX - 300 + 'px';
-            aura.style.top = e.pageY - 300 + 'px';
+            aura.style.transform = `translate(${e.pageX - 300}px, ${e.pageY - 300}px)`;
         });
 
+        // Open Letter Logic
         function openMagic() {
-            document.getElementById('letter').classList.add('active');
+            letter.classList.add('active');
             card.style.opacity = '0';
             card.style.pointerEvents = 'none';
             
-            confetti({
-                particleCount: 150,
-                spread: 100,
-                origin: { y: 0.6 },
-                colors: ['#ff385c', '#ffffff', '#000000']
-            });
+            // Celebration!
+            const count = 200;
+            const defaults = { origin: { y: 0.7 }, zIndex: 1000 };
+
+            function fire(particleRatio, opts) {
+                confetti({ ...defaults, ...opts, particleCount: Math.floor(count * particleRatio) });
+            }
+
+            fire(0.25, { spread: 26, startVelocity: 55 });
+            fire(0.2, { spread: 60 });
+            fire(0.35, { spread: 100, decay: 0.91, scalar: 0.8 });
+            fire(0.1, { spread: 120, startVelocity: 25, decay: 0.92, scalar: 1.2 });
+            fire(0.1, { spread: 120, startVelocity: 45 });
         }
 
+        // Close Letter Logic
         function closeMagic() {
-            document.getElementById('letter').classList.remove('active');
+            letter.classList.remove('active');
             card.style.opacity = '1';
             card.style.pointerEvents = 'all';
         }
 
+        // Image Zoom Logic
         function zoom(el) {
             const overlay = document.getElementById('overlay');
             const fullImg = document.getElementById('full-img');
@@ -221,5 +267,4 @@
         }
     </script>
 </body>
-
 </html>
